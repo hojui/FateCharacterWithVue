@@ -1,0 +1,32 @@
+[
+	{
+		"id" : 2,
+		"class" : "saber",
+		"name" : "Artoria Pendragon",
+		"atk" : 11221,
+		"hp" : 15150,
+		"starAbsorb" : 102,
+		"starGen" : "10%",
+		"image" : "./image/02.png"
+	},
+	{
+		"id" : 17,
+		"class" : "lancer",
+		"name" : "Cu Chulainn",
+		"atk" : 7239,
+		"hp" : 9593,
+		"starAbsorb" : 87,
+		"starGen" : "12.1%",
+		"image" : "./image/17.png"
+	},
+	{
+		"id" : 11,
+		"class" : "archer",
+		"name" : "Emiya",
+		"atk" : 9398,
+		"hp" : 11521,
+		"starAbsorb" : 145,
+		"starGen" : "7.9%",
+		"image" : "./image/11.png"
+	}
+]

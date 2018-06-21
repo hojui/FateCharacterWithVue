@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Fate Information</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="container" id="app">
+		<div>
+			<h1 style="text-align: center">Select the Class</h1>
+			<input type="radio" value="All" v-model="select">&nbsp;<label>All</label><br>
+			<input type="radio" value="Saber" v-model="select">&nbsp;<label>Saber</label><br>
+			<input type="radio" value="Lancer" v-model="select">&nbsp;<label>Lancer</label><br>
+			<input type="radio" value="Archer" v-model="select">&nbsp;<label>Archer</label><br>
+		</div>
+		<div>
+			<fate v-for="i in fate.length" v-if="filterServant(fate[i-1])" v-bind:f="fate[i-1]">
+			</fate>
+		</div>
+	</div>
+	<script>
+		//var data = require('./fateData.json');
+		var data = '[{"id" : 2,"c" : "saber","name" : "Artoria Pendragon","atk" : 11221,"hp" : 15150,"starAbsorb" : 102,"starGen" : "10%","image" : "./image/02.png"},{"id" : 17,"c" : "lancer","name" : "Cu Chulainn","atk" : 7239,"hp" : 9593,"starAbsorb" : 87,"starGen" : "12.1%","image" : "./image/17.png"},{"id" : 11,"c" : "archer","name" : "Emiya","atk" : 9398,"hp" : 11521,"starAbsorb" : 145,"starGen" : "7.9%","image" : "./image/11.png"}]'
+
+		var fate = JSON.parse(data)
+
+		var app = new Vue({
+			el : '#app',
+			data : {
+				select : '',
+				d : fate
+			},
+			methods : {
+				filterServant : function(s) {
+					console.log("aa",s)
+					if (this.select == 'All' || this.select.toLowerCase() == s.c) {
+						return true
+					}
+					return false
+				}
+			}
+		})
+
+		Vue.component('fate',{
+			props : ['f'],
+			template : `
+			<div style="border : 1px solid;padding: 10px;display:block" class="container">
+				<img v-bind:src="f.image" style="text-align: center"><br><br>
+				<h6>Name : {{f.name}}</h6><br>
+				<h6>ATK : {{f.atk}}</h6><br>
+				<h6>HP : {{f.hp}}</h6><br>
+				<h6>Star Absorb : {{f.starAbsorb}}</h6><br>
+				<h6>Star Gen : {{f.starGen}}</h6><br>
+			</div>
+			`
+		})
+	</script>
+</body>
+</html>
